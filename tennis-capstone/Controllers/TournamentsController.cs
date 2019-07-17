@@ -22,7 +22,7 @@ namespace tennisCapstone.Controllers
         }
 
         [HttpGet]
-        public IEnumerable GetTournaments()
+        public RootObject GetTournaments()
         {
             return _tournamentsRepo.GetTournaments();
         }

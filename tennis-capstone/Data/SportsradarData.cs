@@ -12,8 +12,6 @@ namespace tennisCapstone.Data
 {
     public class SportsradarData
     {
-        const string ConnectionString = "Server = localhost; Database = TennisExplorer; Trusted_Connection = True;";
-
         public RootObject GetTournaments()
         {
             //var urlKey = appsettings.sport

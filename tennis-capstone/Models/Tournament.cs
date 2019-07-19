@@ -7,13 +7,15 @@ namespace tennisCapstone.Models
 {
     public class Tournament
     {
-        //public int TournamentId { get; set; }
-        public string Id { get; set; }
+        public int TournamentId { get; set; }
+        public int SportsradarId { get; set; }
         public string Name { get; set; }
-        public Category Category { get; set; }
-        public CurrentSeason Current_Season { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string Year { get; set; }
+        public string Level { get; set; }
         public string Type { get; set; }
         public string Gender { get; set; }
-        //public bool IsFavorite { get; set; }
+        public bool IsFavorite { get; set; }
     }
 }

@@ -10,21 +10,31 @@ using tennisCapstone.Models;
 
 namespace tennisCapstone.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class TournamentsController : ControllerBase
     {
-        public readonly SportsradarData _tournamentsRepo;
+        public readonly SportsradarData _apiTourneyRepo;
+        public readonly TournamentRepository _tournamentsRepo;
 
         public TournamentsController()
         {
-            _tournamentsRepo = new SportsradarData();
+            _apiTourneyRepo = new SportsradarData();
+            _tournamentsRepo = new TournamentRepository();
         }
 
-        [HttpGet]
-        public RootObject GetTournaments()
+        [HttpGet("api")]
+        public RootObject GetTournamentsFromApi()
         {
-            return _tournamentsRepo.GetTournaments();
+            return _apiTourneyRepo.GetTournaments();
+        }
+
+        [HttpPost]
+        public ActionResult AddOrder(TournamentFromApi tournamentObjectFromApi)
+        {
+            var newTournament = _tournamentsRepo.AddTournaments(tournamentObjectFromApi);
+
+            return Created($"tournaments/{newTournament.TournamentId}", newTournament);
         }
 
     }

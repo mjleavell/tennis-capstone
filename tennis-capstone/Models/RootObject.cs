@@ -8,6 +8,6 @@ namespace tennisCapstone.Models
 {
     public class RootObject
     {
-        public IEnumerable<Tournament> tournaments { get; set; }
+        public IEnumerable<TournamentFromApi> tournaments { get; set; }
     }
 }

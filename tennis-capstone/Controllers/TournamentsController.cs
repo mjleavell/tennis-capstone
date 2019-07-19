@@ -30,9 +30,11 @@ namespace tennisCapstone.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddOrder(TournamentFromApi tournamentObjectFromApi)
+        public ActionResult AddTournaments()
         {
-            var newTournament = _tournamentsRepo.AddTournaments(tournamentObjectFromApi);
+            RootObject allTournaments = _apiTourneyRepo.GetTournaments();
+
+            var newTournament = _tournamentsRepo.AddTournaments(allTournaments);
 
             return Created($"tournaments/{newTournament.TournamentId}", newTournament);
         }

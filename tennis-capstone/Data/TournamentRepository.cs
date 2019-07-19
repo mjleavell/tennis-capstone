@@ -9,7 +9,7 @@ namespace tennisCapstone.Data
     {
         const string ConnectionString = "Server = localhost; Database = TennisExplorer; Trusted_Connection = True;";
 
-        public Tournament AddTournaments(TournamentFromApi tournamentObjectFromApi)
+        public Tournament AddTournaments(RootObject tournamentObjectList)
         {
             using (var db = new SqlConnection(ConnectionString))
             {

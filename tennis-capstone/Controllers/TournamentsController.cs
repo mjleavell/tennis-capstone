@@ -32,7 +32,8 @@ namespace tennisCapstone.Controllers
         [HttpPost]
         public ActionResult AddTournaments()
         {
-            RootObject allTournaments = _apiTourneyRepo.GetTournaments();
+            IEnumerable<TournamentFromApi> allTournaments = _apiTourneyRepo.GetTournaments().tournaments;
+            //List<TournamentFromApi> allTournaments = allTournamentsFromApi.tournaments.ToList();
 
             var newTournament = _tournamentsRepo.AddTournaments(allTournaments);
 

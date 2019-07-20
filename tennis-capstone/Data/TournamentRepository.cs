@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using tennisCapstone.Models;
 
 namespace tennisCapstone.Data
@@ -10,10 +11,12 @@ namespace tennisCapstone.Data
     {
         const string ConnectionString = "Server = localhost; Database = TennisExplorer; Trusted_Connection = True;";
 
-        public Tournament AddTournaments(IEnumerable<TournamentFromApi> tournamentObjectList)
+        public IEnumerable<Tournament> AddTournaments(IEnumerable<TournamentFromApi> tournamentObjectList)
         {
             using (var db = new SqlConnection(ConnectionString))
             {
+                var allTournaments = new List<Tournament>();
+
                 foreach (TournamentFromApi tournament in tournamentObjectList)
                 {
                     var insertQuery = @"
@@ -52,16 +55,34 @@ namespace tennisCapstone.Data
                         IsFavorite = false
                     };
 
-                    db.Execute(insertQuery, parameters);
-                    //var newTournament = db.Execute(insertQuery, tournamentObjectList);
-                    //connection.Execute("INSERT INTO MYTABLE VALUES (@A, @B)", myList);
-                    //if (newTournament != null)
-                    //{
-                    //    return newTournament;
-                    //}
+                    Tournament newTournament;
 
+                    try
+                    {
+                        newTournament = db.QueryFirstOrDefault<Tournament>(insertQuery, parameters);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        throw;
+                    }
+
+                    if (newTournament == null)
+                    {
+                        throw new Exception("Unable to add new tournament to database");
+                    }
+
+                    allTournaments.Add(newTournament);
                 }
-                throw new Exception("Unable to add new tournament to database");
+
+                // if there are any tournaments, return them
+                if (allTournaments.Any())
+                {
+                    return allTournaments;
+                }
+               
+                //if there aren't any tournaments in the list, throw an error
+                throw new Exception("There are no tournaments from api");
             }
         }
     }

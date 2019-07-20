@@ -33,11 +33,10 @@ namespace tennisCapstone.Controllers
         public ActionResult AddTournaments()
         {
             IEnumerable<TournamentFromApi> allTournaments = _apiTourneyRepo.GetTournaments().tournaments;
-            //List<TournamentFromApi> allTournaments = allTournamentsFromApi.tournaments.ToList();
 
-            var newTournament = _tournamentsRepo.AddTournaments(allTournaments);
+            var newTournaments = _tournamentsRepo.AddTournaments(allTournaments);
 
-            return Created($"tournaments/{newTournament.TournamentId}", newTournament);
+            return Created("newtournaments", newTournaments);
         }
 
     }

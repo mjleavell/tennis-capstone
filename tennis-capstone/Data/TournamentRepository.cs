@@ -15,6 +15,7 @@ namespace tennisCapstone.Data
         {
             using (var db = new SqlConnection(ConnectionString))
             {
+                // create a new list so that I can use methods on that list
                 var allTournaments = new List<Tournament>();
 
                 foreach (TournamentFromApi tournament in tournamentObjectList)
@@ -76,6 +77,7 @@ namespace tennisCapstone.Data
                 }
 
                 // if there are any tournaments, return them
+                // if you want to get womens, you can do any where = womens
                 if (allTournaments.Any())
                 {
                     return allTournaments;
@@ -83,6 +85,18 @@ namespace tennisCapstone.Data
                
                 //if there aren't any tournaments in the list, throw an error
                 throw new Exception("There are no tournaments from api");
+            }
+        }
+
+        public IEnumerable<Tournament> GetTournaments()
+        {
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var getQuery = "SELECT * FROM tournaments";
+
+                var tournaments = db.Query<Tournament>(getQuery).ToList();
+
+                return tournaments;
             }
         }
     }

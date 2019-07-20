@@ -23,6 +23,15 @@ namespace tennisCapstone.Controllers
             _tournamentsRepo = new TournamentRepository();
         }
 
+        [HttpGet]
+        public ActionResult GetAllTournaments()
+        {
+            var allTournaments = _tournamentsRepo.GetTournaments();
+
+            return Ok(allTournaments);
+
+        }
+
         [HttpGet("api")]
         public RootObject GetTournamentsFromApi()
         {
@@ -38,6 +47,5 @@ namespace tennisCapstone.Controllers
 
             return Created("newtournaments", newTournaments);
         }
-
     }
 }

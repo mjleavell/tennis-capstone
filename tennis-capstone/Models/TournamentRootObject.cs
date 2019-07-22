@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace tennisCapstone.Models
 {
-    public class RootObject
+    public class TournamentRootObject
     {
         public IEnumerable<TournamentFromApi> tournaments { get; set; }
     }

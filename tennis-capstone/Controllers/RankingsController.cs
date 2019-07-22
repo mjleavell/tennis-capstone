@@ -37,5 +37,11 @@ namespace tennisCapstone.Controllers
         {
             return _apiRankingRepo.GetRankings();
         }
+
+        [HttpGet("api/wta")]
+        public IEnumerable<PlayerRankings> GetWTARankingsFromApi()
+        {
+            return _apiRankingRepo.GetWomenRankings();
+        }
     }
 }

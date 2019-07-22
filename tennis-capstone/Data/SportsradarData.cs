@@ -33,7 +33,7 @@ namespace tennisCapstone.Data
             return results;
         }
 
-        public IEnumerable<PlayerRankings> GetWomenRankings()
+        public IEnumerable<IEnumerable<PlayerRankings>> GetWomenRankings()
         {
             var client = new RestClient("https://api.sportradar.com/tennis-t2/en/players/rankings.json?api_key=3wwpqgh6fga9fugfj7a83p9r");
             var request = new RestRequest(Method.GET);

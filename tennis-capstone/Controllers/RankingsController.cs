@@ -23,15 +23,6 @@ namespace tennisCapstone.Controllers
             _rankingRepository = new RankingRepository();
         }
 
-        //[HttpGet]
-        //public ActionResult GetRankings()
-        //{
-        //    var rankings = _rankingRepository.GetRankings();
-
-        //    return Ok(rankings);
-
-        //}
-
         [HttpGet("api")]
         public RankingRootObject GetRankingsFromApi()
         {
@@ -39,9 +30,19 @@ namespace tennisCapstone.Controllers
         }
 
         [HttpGet("api/wta")]
-        public IEnumerable<PlayerRankings> GetWTARankingsFromApi()
+        public IEnumerable<IEnumerable<PlayerRankings>> GetWTARankingsFromApi()
         {
             return _apiRankingRepo.GetWomenRankings();
+        }
+
+        [HttpPost]
+        public ActionResult AddPlayersToDb()
+        {
+            IEnumerable<IEnumerable<PlayerRankings>> allRankings = _apiRankingRepo.GetWomenRankings();
+
+            var newRankings = _rankingRepository.AddPlayerRankings(allRankings);
+
+            return Created("rankings", newRankings);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace tennisCapstone.Controllers
         }
 
         [HttpGet("api")]
-        public RootObject GetTournamentsFromApi()
+        public TournamentRootObject GetTournamentsFromApi()
         {
             return _apiTourneyRepo.GetTournaments();
         }

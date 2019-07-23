@@ -56,6 +56,13 @@ namespace tennisCapstone.Controllers
             return Created("rankings", newRankings);
         }
 
+        [HttpPut("{playerId}")]
+        public ActionResult UpdateIsFavorite(int playerId, [FromBody] bool isFavorite)
+        {
+            _rankingRepository.UpdateIsFavorite(playerId, isFavorite);
+
+            return Ok();
+        }
 
     }
 }

@@ -90,5 +90,25 @@ namespace tennisCapstone.Data
                 return playerRankings;
             }
         }
+
+        public void UpdateIsFavorite(int id, bool isFavorite)
+        {
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var parameter = new {
+                    PlayerId = id,
+                    IsFavorite = isFavorite
+                };
+
+                var updateQuery = "UPDATE players SET isFavorite = @isFavorite WHERE playerId = @playerId";
+
+                var rowsAffected = db.Execute(updateQuery, parameter);
+
+                if (rowsAffected != 1)
+                {
+                    throw new Exception("Unable to to favorite that player");
+                }
+            }
+        }
     }
 }

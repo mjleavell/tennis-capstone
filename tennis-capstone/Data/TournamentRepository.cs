@@ -99,5 +99,26 @@ namespace tennisCapstone.Data
                 return tournaments;
             }
         }
+
+        public void UpdateIsFavorite(int id, bool isFavorite)
+        {
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var parameter = new
+                {
+                    TournamentId = id,
+                    IsFavorite = isFavorite
+                };
+
+                var updateQuery = "UPDATE tournaments SET isFavorite = @isFavorite WHERE tournamentId = @tournamentId";
+
+                var rowsAffected = db.Execute(updateQuery, parameter);
+
+                if (rowsAffected != 1)
+                {
+                    throw new Exception("Unable to to favorite that tournament");
+                }
+            }
+        }
     }
 }

@@ -47,5 +47,13 @@ namespace tennisCapstone.Controllers
 
             return Created("newtournaments", newTournaments);
         }
+
+        [HttpPut("{tournamentId}")]
+        public ActionResult UpdateIsFavorite(int tournamentId, [FromBody] bool isFavorite)
+        {
+            _tournamentsRepo.UpdateIsFavorite(tournamentId, isFavorite);
+
+            return Ok();
+        }
     }
 }

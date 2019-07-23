@@ -16,13 +16,12 @@ namespace tennisCapstone.Data
         {
             using (var db = new SqlConnection(ConnectionString))
             {
-                // create a new list so that I can use methods on that list
                 var allRankings = new List<Player>();
 
                     foreach (PlayerRankings player in rankingListObjectFromApi)
                     {
                         var insertQuery = @"
-                            INSERT INTO[dbo].[PlayerRankings]
+                            INSERT INTO[dbo].[Players]
                                         ([SportsradarId]
                                         ,[Name]
                                         ,[CurrentSinglesRanking]
@@ -71,14 +70,24 @@ namespace tennisCapstone.Data
                         allRankings.Add(newPlayerRanking);
                     }
 
-                // if there are any tournaments, return them
-                // if you want to get womens, you can do any where = womens
                 if (allRankings.Any())
                 {
                     return allRankings;
                 }
-                //if there aren't any tournaments in the list, throw an error
+
                 throw new Exception("No rankings were returned from api");
+            }
+        }
+
+        public IEnumerable<Player> GetRankings()
+        {
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var getQuery = "SELECT * FROM Players";
+
+                var playerRankings = db.Query<Player>(getQuery).ToList();
+
+                return playerRankings;
             }
         }
     }

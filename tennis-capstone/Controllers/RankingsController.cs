@@ -23,12 +23,23 @@ namespace tennisCapstone.Controllers
             _rankingRepository = new RankingRepository();
         }
 
+        [HttpGet]
+        public ActionResult GetPlayerRankings()
+        {
+            var allRankings = _rankingRepository.GetRankings();
+
+            return Ok(allRankings);
+
+        }
+
+        // get ATP and WTA rankings from sportsradar
         [HttpGet("api")]
         public RankingRootObject GetRankingsFromApi()
         {
             return _apiRankingRepo.GetRankings();
         }
 
+        // get only WTA rankings from sportsradar
         [HttpGet("api/wta")]
         public IEnumerable<PlayerRankings> GetWTARankingsFromApi()
         {
@@ -44,5 +55,7 @@ namespace tennisCapstone.Controllers
 
             return Created("rankings", newRankings);
         }
+
+
     }
 }

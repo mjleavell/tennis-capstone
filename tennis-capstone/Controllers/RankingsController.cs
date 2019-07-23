@@ -30,7 +30,7 @@ namespace tennisCapstone.Controllers
         }
 
         [HttpGet("api/wta")]
-        public IEnumerable<IEnumerable<PlayerRankings>> GetWTARankingsFromApi()
+        public IEnumerable<PlayerRankings> GetWTARankingsFromApi()
         {
             return _apiRankingRepo.GetWomenRankings();
         }
@@ -38,7 +38,7 @@ namespace tennisCapstone.Controllers
         [HttpPost]
         public ActionResult AddPlayersToDb()
         {
-            IEnumerable<IEnumerable<PlayerRankings>> allRankings = _apiRankingRepo.GetWomenRankings();
+            IEnumerable<PlayerRankings> allRankings = _apiRankingRepo.GetWomenRankings();
 
             var newRankings = _rankingRepository.AddPlayerRankings(allRankings);
 

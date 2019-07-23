@@ -12,16 +12,14 @@ namespace tennisCapstone.Data
     {
         const string ConnectionString = "Server = localhost; Database = TennisExplorer; Trusted_Connection = True;";
 
-        public IEnumerable<Player> AddPlayerRankings(IEnumerable<IEnumerable<PlayerRankings>> rankingListObjectFromApi)
+        public IEnumerable<Player> AddPlayerRankings(IEnumerable<PlayerRankings> rankingListObjectFromApi)
         {
             using (var db = new SqlConnection(ConnectionString))
             {
                 // create a new list so that I can use methods on that list
                 var allRankings = new List<Player>();
 
-                foreach (IEnumerable<PlayerRankings> playerRankings in rankingListObjectFromApi)
-                {
-                    foreach (PlayerRankings player in playerRankings)
+                    foreach (PlayerRankings player in rankingListObjectFromApi)
                     {
                         var insertQuery = @"
                             INSERT INTO[dbo].[PlayerRankings]
@@ -72,8 +70,6 @@ namespace tennisCapstone.Data
 
                         allRankings.Add(newPlayerRanking);
                     }
-
-                }
 
                 // if there are any tournaments, return them
                 // if you want to get womens, you can do any where = womens

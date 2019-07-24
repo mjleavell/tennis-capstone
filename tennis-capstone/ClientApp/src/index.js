@@ -1,9 +1,7 @@
-/* eslint-disable function-paren-newline */
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
-import './styles/index.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+import './styles/index.scss';
 import App from './App/App';
 import registerServiceWorker from './registerServiceWorker';
 

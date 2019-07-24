@@ -28,21 +28,21 @@ const PublicRoute = ({ component: Component, authed, ...rest }) => {
 // };
 
 class App extends React.Component {
-  // displayName = App.name
-
   render() {
     return (
       <div className="App">
-        <MyNavbar />
         <BrowserRouter>
-          <Switch>
-            <PublicRoute exact path='/' component={Home} authed={false} />
-            <PublicRoute path='/home' component={Home} authed={false} />
-            <PublicRoute path='/rankings' component={PlayerRankings} authed={false} />
-            <PublicRoute path='/tournaments' component={Tournament} authed={false} />
-            <PublicRoute path='/player' component={PlayerProfile} authed={false} />
-            <PublicRoute path='/tournaments/:tournamentId' component={TournamentProfile} authed={false} />
-          </Switch>
+          <React.Fragment>
+            <MyNavbar authed={false} />
+            <Switch>
+              <PublicRoute exact path='/' component={Home} authed={false} />
+              <PublicRoute path='/home' component={Home} authed={false} />
+              <PublicRoute path='/rankings' component={PlayerRankings} authed={false} />
+              <PublicRoute path='/tournaments' component={Tournament} authed={false} />
+              <PublicRoute path='/player' component={PlayerProfile} authed={false} />
+              <PublicRoute path='/tournaments/:tournamentId' component={TournamentProfile} authed={false} />
+            </Switch>
+          </React.Fragment>
         </BrowserRouter>
       </div>
     );

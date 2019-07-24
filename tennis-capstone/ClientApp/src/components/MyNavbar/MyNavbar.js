@@ -47,6 +47,14 @@ class MyNavbar extends React.Component {
                   Tournaments
                 </NavLink>
               </NavItem>
+              <NavItem>
+              <NavLink
+                  tag={RRNavLink}
+                  to='/favorites'
+                >
+                  Favorites
+                </NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>

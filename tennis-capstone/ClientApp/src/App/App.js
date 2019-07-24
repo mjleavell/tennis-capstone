@@ -11,6 +11,7 @@ import PlayerProfile from '../components/pages/PlayerProfile/PlayerProfile';
 import PlayerRankings from '../components/pages/PlayerRankings/PlayerRankings';
 import Tournament from '../components/pages/Tournament/Tournament';
 import TournamentProfile from '../components/pages/TournamentProfile/TournamentProfile';
+import Favorites from '../components/pages/Favorites/Favorites';
 import './App.scss';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
@@ -39,6 +40,7 @@ class App extends React.Component {
               <PublicRoute path='/home' component={Home} authed={false} />
               <PublicRoute path='/rankings' component={PlayerRankings} authed={false} />
               <PublicRoute path='/tournaments' component={Tournament} authed={false} />
+              <PublicRoute path='/favorites' component={Favorites} authed={false} />
               <PublicRoute path='/player' component={PlayerProfile} authed={false} />
               <PublicRoute path='/tournaments/:tournamentId' component={TournamentProfile} authed={false} />
             </Switch>

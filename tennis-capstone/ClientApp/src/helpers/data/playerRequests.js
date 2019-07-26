@@ -14,6 +14,16 @@ const getWomenPlayers = () => new Promise((resolve, reject) => {
     });
 });
 
+const updateFavoritePlayer = (playerId, isFavorite) => new Promise((resolve, reject) => {
+  axios.put(`${apiUrl}/rankings/${playerId}`, isFavorite).then((result) => {
+    resolve(result.data);
+  })
+    .catch((error) => {
+      reject(error);
+    });
+});
+
 export default {
   getWomenPlayers,
+  updateFavoritePlayer,
 };

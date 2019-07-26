@@ -1,4 +1,5 @@
 import React from 'react';
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { Table } from 'reactstrap';
 import SinglePlayer from '../../SinglePlayer/SinglePlayer';
 import playerRequests from '../../../helpers/data/playerRequests';
@@ -19,6 +20,15 @@ class PlayerRankings extends React.Component {
     }).catch(err => console.error('error getting women in PlayerRankings', err));
   }
 
+  updateIsFavorite = (playerId, isFavorite) => {
+    playerRequests.updateFavoritePlayer(playerId, isFavorite)
+      .then(() => {
+        this.getPlayers();
+      })
+      .catch(err => console.error('error. unable to mark player as favorite', err));
+  }
+
+
   render() {
     const { players } = this.state;
 
@@ -26,33 +36,42 @@ class PlayerRankings extends React.Component {
       <SinglePlayer
         key={player.playerId}
         player={player}
+        updateIsFavorite={this.updateIsFavorite}
       />
-      // <th scope="row">{player.ranking}</th>
-      // <td>{player.name}</td>
-      // <td>{player.points}</td>
-      // <td></td>
     ));
+
+    const selectRow = {
+      mode: 'checkbox',
+    };
 
     return (
       <div className="PlayerRankings">
         <h2>Player Rankings</h2>
-        <Table>
+        <Table className='table-hover' data-toggle='table' data-sort-order="desc">
           <thead>
             <tr>
-              <th>Rank</th>
-              <th>Name</th>
-              <th>Points</th>
-              <th>Nationality</th>
-              <th>Tournaments Played</th>
-              <th></th>
+              <th data-field='ranking' data-sortable='true'>Rank</th>
+              <th data-field="name" data-sortable="true">Name</th>
+              <th data-field="points" data-sortable="true">Points</th>
+              <th data-field="nationality" data-sortable="true">Nationality</th>
+              <th data-field="tournamentsPlayed" data-sortable="true">Tournaments Played</th>
+              <th data-field="favorite" data-sortable="true"></th>
             </tr>
           </thead>
           <tbody>
-            {/* <tr> */}
-              {rankingsTableBuilder}
-            {/* </tr> */}
+            {rankingsTableBuilder}
           </tbody>
         </Table>
+
+
+        {/* <BootstrapTable ref='table' version='4' data={players} pagination>
+          <TableHeaderColumn dataField='currentSinglesRanking' isKey={true} dataSort>Ranking</TableHeaderColumn>
+          <TableHeaderColumn dataField='name' dataSort>Name</TableHeaderColumn>
+          <TableHeaderColumn dataField='rankingPoints' dataSort>Points</TableHeaderColumn>
+          <TableHeaderColumn dataField='tournamentsPlayed' dataSort>Tournaments Played</TableHeaderColumn>
+          <TableHeaderColumn dataField='nationality' dataSort>Nationality</TableHeaderColumn>
+          <TableHeaderColumn selectRow={selectRow} dataField='isFavorite' dataSort>Favorite</TableHeaderColumn>
+        </BootstrapTable> */}
       </div>
     );
   }

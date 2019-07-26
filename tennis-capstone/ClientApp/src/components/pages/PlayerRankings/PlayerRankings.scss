@@ -1,6 +1,9 @@
 .PlayerRankings {
-  .table {
+  .table, .react-bs-table-container {
     margin: auto;
-    width: 60rem;
+    width: 80rem;
+    .react-bs-container-body {
+      overflow: hidden;
+    }
   }
 }

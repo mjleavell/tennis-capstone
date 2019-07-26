@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using tennisCapstone.Data;
@@ -29,7 +30,6 @@ namespace tennisCapstone.Controllers
             var allRankings = _rankingRepository.GetRankings();
 
             return Ok(allRankings);
-
         }
 
         // get ATP and WTA rankings from sportsradar

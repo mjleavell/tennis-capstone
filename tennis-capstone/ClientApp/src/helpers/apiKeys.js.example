@@ -1,0 +1,7 @@
+const apiKeys = {
+  tennisApi: {
+    apiBaseUrl: '',
+  },
+};
+
+export default apiKeys;

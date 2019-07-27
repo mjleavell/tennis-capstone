@@ -1,13 +1,58 @@
+/* eslint-disable max-len */
 import React from 'react';
 // import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import {
+  MDBDataTable,
+  MDBIcon,
+} from 'mdbreact';
 import { Table } from 'reactstrap';
 import SinglePlayer from '../../SinglePlayer/SinglePlayer';
 import playerRequests from '../../../helpers/data/playerRequests';
 import './PlayerRankings.scss';
 
+const columnsForTable = [
+  {
+    label: 'Rank',
+    field: 'currentSinglesRanking',
+    sort: 'asc',
+  },
+  {
+    label: 'Name',
+    field: 'name',
+    sort: 'asc',
+  },
+  {
+    label: 'Points',
+    field: 'rankingPoints',
+    sort: 'asc',
+  },
+  {
+    label: 'Tournaments Played',
+    field: 'tournamentsPlayed',
+    sort: 'asc',
+  },
+  {
+    label: 'Nationality',
+    field: 'nationality',
+    sort: 'asc',
+  },
+  {
+    label: 'Favorite',
+    field: 'isFavorite',
+    sort: 'asc',
+  },
+];
+
+const defaultData = {
+  columns: columnsForTable,
+  rows: [],
+};
+
 class PlayerRankings extends React.Component {
   state = {
     players: [],
+    rows: [],
+    data: defaultData,
   }
 
   componentWillMount() {
@@ -17,6 +62,7 @@ class PlayerRankings extends React.Component {
   getPlayers = () => {
     playerRequests.getWomenPlayers().then((data) => {
       this.setState({ players: data });
+      this.dataBuilder(data);
     }).catch(err => console.error('error getting women in PlayerRankings', err));
   }
 
@@ -28,9 +74,33 @@ class PlayerRankings extends React.Component {
       .catch(err => console.error('error. unable to mark player as favorite', err));
   }
 
+  tableRowBuilder = (players) => {
+    const tableRows = [];
+    // eslint-disable-next-line array-callback-return
+    players.map((player) => {
+      const newPlayer = {
+        currentSinglesRanking: player.currentSinglesRanking,
+        name: player.name,
+        rankingPoints: player.rankingPoints,
+        tournamentsPlayed: player.tournamentsPlayed,
+        nationality: player.nationality,
+        isFavorite: (player.isFavorite === true) ? <MDBIcon icon="star" size="sm" className='btn table-btn' id={player.playerId} onClick={e => this.isFavorite(e, player.playerId, player.isFavorite)} /> : <MDBIcon far icon="star" size="sm" className='btn table-btn' id={player.playerId} onClick={e => this.isFavorite(e, player.playerId, player.isFavorite)} />,
+      };
+      tableRows.push(newPlayer);
+    });
+    this.setState({ rows: tableRows });
+  };
+
+  dataBuilder = (players) => {
+    const tempData = { ...this.state.data };
+    this.tableRowBuilder(players);
+    tempData.rows = this.state.rows;
+    this.setState({ data: tempData });
+  }
+
 
   render() {
-    const { players } = this.state;
+    const { players, data } = this.state;
 
     const rankingsTableBuilder = players.map(player => (
       <SinglePlayer
@@ -40,14 +110,10 @@ class PlayerRankings extends React.Component {
       />
     ));
 
-    // const selectRow = {
-    //   mode: 'checkbox',
-    // };
-
     return (
       <div className="PlayerRankings">
         <h2>Player Rankings</h2>
-        <Table className='table-hover' data-toggle='table' data-sort-order="desc">
+        {/* <Table className='table-hover' data-toggle='table' data-sort-order="desc">
           <thead>
             <tr>
               <th data-field='ranking' data-sortable='true'>Rank</th>
@@ -61,17 +127,13 @@ class PlayerRankings extends React.Component {
           <tbody>
             {rankingsTableBuilder}
           </tbody>
-        </Table>
-
-
-        {/* <BootstrapTable ref='table' version='4' data={players} pagination>
-          <TableHeaderColumn dataField='currentSinglesRanking' isKey={true} dataSort>Ranking</TableHeaderColumn>
-          <TableHeaderColumn dataField='name' dataSort>Name</TableHeaderColumn>
-          <TableHeaderColumn dataField='rankingPoints' dataSort>Points</TableHeaderColumn>
-          <TableHeaderColumn dataField='tournamentsPlayed' dataSort>Tournaments Played</TableHeaderColumn>
-          <TableHeaderColumn dataField='nationality' dataSort>Nationality</TableHeaderColumn>
-          <TableHeaderColumn selectRow={selectRow} dataField='isFavorite' dataSort>Favorite</TableHeaderColumn>
-        </BootstrapTable> */}
+        </Table> */}
+        <MDBDataTable
+          striped
+          bordered
+          small
+          data={data}
+        />
       </div>
     );
   }

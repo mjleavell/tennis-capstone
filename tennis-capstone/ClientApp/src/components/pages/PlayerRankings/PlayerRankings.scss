@@ -1,9 +1,18 @@
 .PlayerRankings {
-  .table, .react-bs-table-container {
+  width: 90%;
+  margin: auto;
+  .table {
+    width: 90%;
     margin: auto;
-    width: 80rem;
-    .react-bs-container-body {
-      overflow: hidden;
+    tbody {
+      td:last-child {
+        padding: 0.6rem;
+        display: flex;
+        align-content: center;
+      }
+    }
+    .table-btn {
+      justify-content: center;
     }
   }
 }

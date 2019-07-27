@@ -1,5 +1,5 @@
 import React from 'react';
-import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+// import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { Table } from 'reactstrap';
 import SinglePlayer from '../../SinglePlayer/SinglePlayer';
 import playerRequests from '../../../helpers/data/playerRequests';

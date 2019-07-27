@@ -57,7 +57,7 @@ namespace tennisCapstone.Controllers
         }
 
         [HttpPut("{playerId}")]
-        public ActionResult UpdateIsFavorite(int playerId, [FromBody] bool isFavorite)
+        public ActionResult UpdateIsFavorite(int playerId, bool isFavorite)
         {
             _rankingRepository.UpdateIsFavorite(playerId, isFavorite);
 

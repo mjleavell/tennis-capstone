@@ -1,12 +1,9 @@
 /* eslint-disable max-len */
 import React from 'react';
-// import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import {
   MDBDataTable,
   MDBIcon,
 } from 'mdbreact';
-import { Table } from 'reactstrap';
-import SinglePlayer from '../../SinglePlayer/SinglePlayer';
 import playerRequests from '../../../helpers/data/playerRequests';
 import './PlayerRankings.scss';
 
@@ -74,6 +71,13 @@ class PlayerRankings extends React.Component {
       .catch(err => console.error('error. unable to mark player as favorite', err));
   }
 
+  isFavorite = (e, playerId, oldIsfavorite) => {
+    e.preventDefault();
+    // eslint-disable-next-line no-unneeded-ternary
+    const newIsFavorite = (oldIsfavorite === true) ? false : true;
+    this.updateIsFavorite(playerId, newIsFavorite);
+  };
+
   tableRowBuilder = (players) => {
     const tableRows = [];
     // eslint-disable-next-line array-callback-return
@@ -100,34 +104,11 @@ class PlayerRankings extends React.Component {
 
 
   render() {
-    const { players, data } = this.state;
-
-    const rankingsTableBuilder = players.map(player => (
-      <SinglePlayer
-        key={player.playerId}
-        player={player}
-        updateIsFavorite={this.updateIsFavorite}
-      />
-    ));
+    const { data } = this.state;
 
     return (
       <div className="PlayerRankings">
         <h2>Player Rankings</h2>
-        {/* <Table className='table-hover' data-toggle='table' data-sort-order="desc">
-          <thead>
-            <tr>
-              <th data-field='ranking' data-sortable='true'>Rank</th>
-              <th data-field="name" data-sortable="true">Name</th>
-              <th data-field="points" data-sortable="true">Points</th>
-              <th data-field="nationality" data-sortable="true">Nationality</th>
-              <th data-field="tournamentsPlayed" data-sortable="true">Tournaments Played</th>
-              <th data-field="favorite" data-sortable="true"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {rankingsTableBuilder}
-          </tbody>
-        </Table> */}
         <MDBDataTable
           striped
           bordered

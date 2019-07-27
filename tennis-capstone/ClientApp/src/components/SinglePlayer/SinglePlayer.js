@@ -9,7 +9,7 @@ class SinglePlayer extends React.Component {
   }
 
   isFavorite = (e, playerId, isFavorite) => {
-    e.preventDefault();
+    // e.preventDefault();
     const { updateIsFavorite } = this.props;
     // eslint-disable-next-line no-unneeded-ternary
     const newIsFavorite = isFavorite === true ? false : true;

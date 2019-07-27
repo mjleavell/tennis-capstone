@@ -40,9 +40,9 @@ class PlayerRankings extends React.Component {
       />
     ));
 
-    const selectRow = {
-      mode: 'checkbox',
-    };
+    // const selectRow = {
+    //   mode: 'checkbox',
+    // };
 
     return (
       <div className="PlayerRankings">

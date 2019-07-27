@@ -91,7 +91,7 @@ namespace tennisCapstone.Data
             }
         }
 
-        public void UpdateIsFavorite(int id, bool isFavorite)
+        public void UpdateIsFavorite(int id, Int32 isFavorite)
         {
             using (var db = new SqlConnection(ConnectionString))
             {

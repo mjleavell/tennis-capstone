@@ -88,6 +88,18 @@ namespace tennisCapstone.Data
             }
         }
 
+        public IEnumerable<Tournament> GetWomenTournaments()
+        {
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var getQuery = "SELECT * from Tournaments WHERE Gender != 'men'";
+
+                var tournaments = db.Query<Tournament>(getQuery).ToList();
+
+                return tournaments;
+            }
+        }
+
         public IEnumerable<Tournament> GetTournaments()
         {
             using (var db = new SqlConnection(ConnectionString))

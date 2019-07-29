@@ -32,6 +32,15 @@ namespace tennisCapstone.Controllers
 
         }
 
+        [HttpGet("women")]
+        public ActionResult GetAllWomenTournaments()
+        {
+            var womenTournaments = _tournamentsRepo.GetWomenTournaments();
+
+            return Ok(womenTournaments);
+
+        }
+
         [HttpGet("api")]
         public TournamentRootObject GetTournamentsFromApi()
         {

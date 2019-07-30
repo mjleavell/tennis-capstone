@@ -5,51 +5,14 @@ import {
   MDBIcon,
 } from 'mdbreact';
 import playerRequests from '../../../helpers/data/playerRequests';
+import tableProperties from '../../../helpers/tableProperties';
 import './PlayerRankings.scss';
-
-const columnsForTable = [
-  {
-    label: 'Rank',
-    field: 'currentSinglesRanking',
-    sort: 'asc',
-  },
-  {
-    label: 'Name',
-    field: 'name',
-    sort: 'asc',
-  },
-  {
-    label: 'Points',
-    field: 'rankingPoints',
-    sort: 'asc',
-  },
-  {
-    label: 'Tournaments Played',
-    field: 'tournamentsPlayed',
-    sort: 'asc',
-  },
-  {
-    label: 'Nationality',
-    field: 'nationality',
-    sort: 'asc',
-  },
-  {
-    label: 'Favorite',
-    field: 'isFavorite',
-    sort: 'asc',
-  },
-];
-
-const defaultData = {
-  columns: columnsForTable,
-  rows: [],
-};
 
 class PlayerRankings extends React.Component {
   state = {
     players: [],
     rows: [],
-    data: defaultData,
+    data: tableProperties.defaultPlayerData,
   }
 
   componentWillMount() {

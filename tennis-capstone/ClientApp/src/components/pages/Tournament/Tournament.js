@@ -5,10 +5,16 @@ import {
   MDBDataTable,
   MDBIcon,
 } from 'mdbreact';
+import Moment from 'react-moment';
 import tournamentRequests from '../../../helpers/data/tournamentRequests';
 import './Tournament.scss';
 
 const columnsForTable = [
+  {
+    label: 'Year',
+    field: 'year',
+    sort: 'desc',
+  },
   {
     label: 'Name',
     field: 'name',
@@ -68,9 +74,10 @@ class Tournament extends React.Component {
     const tableRows = [];
     tournaments.map((tournament) => {
       const newTournament = {
+        year: Number(tournament.year),
         name: tournament.name,
-        startDate: tournament.startDate,
-        endDate: tournament.endDate,
+        startDate: <Moment format="MM/DD/YYYY">{tournament.startDate}</Moment>,
+        endDate: <Moment format="MM/DD/YYYY">{tournament.endDate}</Moment>,
         level: tournament.level,
         type: tournament.type,
         isFavorite: (tournament.isFavorite === true) ? <MDBIcon icon="star" size="sm" className='btn table-btn' id={tournament.tournamentId} onClick={e => this.isFavorite(e, tournament.tournamentId, tournament.isFavorite)} /> : <MDBIcon far icon="star" size="sm" className='btn table-btn' id={tournament.tournamentId} onClick={e => this.isFavorite(e, tournament.tournamentId, tournament.isFavorite)} />,
@@ -112,6 +119,7 @@ class Tournament extends React.Component {
           striped
           bordered
           small
+          order={['year', 'asc']}
           data={data}
         />
       </div>

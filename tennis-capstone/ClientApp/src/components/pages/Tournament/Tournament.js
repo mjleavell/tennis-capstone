@@ -87,6 +87,22 @@ class Tournament extends React.Component {
     this.setState({ data: tempData });
   }
 
+  updateIsFavorite = (tournamentId, isFavorite) => {
+    tournamentRequests.updateFaveTournament(tournamentId, isFavorite)
+      .then(() => {
+        this.getWTATournaments();
+      })
+      .catch(err => console.error('error. unable to mark tournament as favorite', err));
+  }
+
+  isFavorite = (e, tournamentId, oldIsfavorite) => {
+    e.preventDefault();
+    // eslint-disable-next-line no-unneeded-ternary
+    const newIsFavorite = (oldIsfavorite === true) ? false : true;
+    this.updateIsFavorite(tournamentId, newIsFavorite);
+  };
+
+
   render() {
     const { data } = this.state;
 

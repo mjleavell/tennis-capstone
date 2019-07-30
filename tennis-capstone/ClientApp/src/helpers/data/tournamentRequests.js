@@ -14,8 +14,9 @@ const getWomenTournaments = () => new Promise((resolve, reject) => {
     });
 });
 
-// const updateFavoritePlayer = (playerId, newIsFavorite) => axios.put(`${apiUrl}/rankings/${playerId}?newIsFavorite=${newIsFavorite}`);
+const updateFaveTournament = (tournamentId, isFavorite) => axios.put(`${apiUrl}/tournaments/${tournamentId}?isFavorite=${isFavorite}`);
 
 export default {
   getWomenTournaments,
+  updateFaveTournament,
 };

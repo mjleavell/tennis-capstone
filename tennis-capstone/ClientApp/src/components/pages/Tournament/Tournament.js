@@ -7,56 +7,14 @@ import {
 } from 'mdbreact';
 import Moment from 'react-moment';
 import tournamentRequests from '../../../helpers/data/tournamentRequests';
+import tableProperties from '../../../helpers/tableProperties';
 import './Tournament.scss';
-
-const columnsForTable = [
-  {
-    label: 'Year',
-    field: 'year',
-    sort: 'desc',
-  },
-  {
-    label: 'Name',
-    field: 'name',
-    sort: 'asc',
-  },
-  {
-    label: 'Start Date',
-    field: 'startDate',
-    sort: 'asc',
-  },
-  {
-    label: 'End Date',
-    field: 'endDate',
-    sort: 'asc',
-  },
-  {
-    label: 'Tournament Level',
-    field: 'level',
-    sort: 'asc',
-  },
-  {
-    label: 'Type',
-    field: 'type',
-    sort: 'asc',
-  },
-  {
-    label: 'Favorite',
-    field: 'isFavorite',
-    sort: 'asc',
-  },
-];
-
-const defaultData = {
-  columns: columnsForTable,
-  rows: [],
-};
 
 class Tournament extends React.Component {
   state = {
     tournaments: [],
     rows: [],
-    data: defaultData,
+    data: tableProperties.defaultTournamentData,
   }
 
   componentWillMount() {

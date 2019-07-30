@@ -32,6 +32,15 @@ namespace tennisCapstone.Controllers
 
         }
 
+        [HttpGet("women")]
+        public ActionResult GetAllWomenTournaments()
+        {
+            var womenTournaments = _tournamentsRepo.GetWomenTournaments();
+
+            return Ok(womenTournaments);
+
+        }
+
         [HttpGet("api")]
         public TournamentRootObject GetTournamentsFromApi()
         {
@@ -49,9 +58,9 @@ namespace tennisCapstone.Controllers
         }
 
         [HttpPut("{tournamentId}")]
-        public ActionResult UpdateIsFavorite(int tournamentId, [FromBody] bool isFavorite)
+        public ActionResult UpdateIsFavorite(int tournamentId, bool isFavorite)
         {
-            _tournamentsRepo.UpdateIsFavorite(tournamentId, isFavorite);
+            _tournamentsRepo.UpdateIsFavorite(tournamentId, Convert.ToInt32(isFavorite));
 
             return Ok();
         }

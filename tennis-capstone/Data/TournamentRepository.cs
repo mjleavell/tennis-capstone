@@ -88,6 +88,18 @@ namespace tennisCapstone.Data
             }
         }
 
+        public IEnumerable<Tournament> GetWomenTournaments()
+        {
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var getQuery = "SELECT * from Tournaments WHERE Gender != 'men'";
+
+                var tournaments = db.Query<Tournament>(getQuery).ToList();
+
+                return tournaments;
+            }
+        }
+
         public IEnumerable<Tournament> GetTournaments()
         {
             using (var db = new SqlConnection(ConnectionString))
@@ -100,7 +112,7 @@ namespace tennisCapstone.Data
             }
         }
 
-        public void UpdateIsFavorite(int id, bool isFavorite)
+        public void UpdateIsFavorite(int id, Int32 isFavorite)
         {
             using (var db = new SqlConnection(ConnectionString))
             {

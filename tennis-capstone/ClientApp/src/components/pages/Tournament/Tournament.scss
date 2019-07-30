@@ -1,0 +1,18 @@
+.Tournament {
+  width: 90%;
+  margin: auto;
+  .table {
+    width: 90%;
+    margin: auto;
+    tbody {
+      td:last-child {
+        padding: 0.6rem;
+        display: flex;
+        align-content: center;
+      }
+    }
+    .table-btn {
+      justify-content: center;
+    }
+  }
+}

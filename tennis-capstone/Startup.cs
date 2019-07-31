@@ -29,7 +29,7 @@ namespace tennis_capstone
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:3000")
+                    builder.WithOrigins("http://localhost:3000", "https://localhost:44302")
                                         .AllowAnyHeader()
                                         .AllowAnyMethod();
                 });

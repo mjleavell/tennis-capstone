@@ -43,5 +43,15 @@ namespace tennisCapstone.Data
             var wta = womenRankings.Player_Rankings;
             return wta;
         }
+
+        public PlayerRootObject GetProfile(string sportsRadarId)
+        {
+            var client = new RestClient($"https://api.sportradar.com/tennis-t2/en/players/{sportsRadarId}/profile.json?api_key=3wwpqgh6fga9fugfj7a83p9r");
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+
+            var results = JsonConvert.DeserializeObject<PlayerRootObject>(response.Content);
+            return results;
+        }
     }
 }

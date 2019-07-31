@@ -25,6 +25,5 @@ namespace tennisCapstone.Data
                 return player;
             }
         }
-
     }
 }

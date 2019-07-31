@@ -8,9 +8,9 @@ namespace tennisCapstone.Models
 {
     public class PlayerRootObject
     {
-        public PlayerProfile player { get; set; }
-        public IEnumerable rankings { get; set; }
-        public StatsRootObject statistics { get; set; }
-        public IEnumerable tournaments_played { get; set; }
+        public PlayerProfile Player { get; set; }
+        public IEnumerable<ProfileRankings> Rankings { get; set; }
+        //public StatsRootObject Statistics { get; set; }
+        public IEnumerable<TournamentFromApi> Tournaments_played { get; set; }
     }
 }

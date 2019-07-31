@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable max-len */
 import React from 'react';
 import {

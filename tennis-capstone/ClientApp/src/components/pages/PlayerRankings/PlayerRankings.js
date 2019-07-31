@@ -4,6 +4,7 @@ import {
   MDBDataTable,
   MDBIcon,
 } from 'mdbreact';
+import { Link } from 'react-router-dom';
 import playerRequests from '../../../helpers/data/playerRequests';
 import tableProperties from '../../../helpers/tableProperties';
 import './PlayerRankings.scss';
@@ -47,7 +48,7 @@ class PlayerRankings extends React.Component {
     players.map((player) => {
       const newPlayer = {
         currentSinglesRanking: player.currentSinglesRanking,
-        name: player.name,
+        name: <Link to={`/players/${player.playerId}`}>{player.name}</Link>,
         rankingPoints: player.rankingPoints,
         tournamentsPlayed: player.tournamentsPlayed,
         nationality: player.nationality,

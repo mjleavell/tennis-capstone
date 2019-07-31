@@ -41,7 +41,7 @@ class App extends React.Component {
               <PublicRoute path='/rankings' component={PlayerRankings} authed={false} />
               <PublicRoute path='/tournaments' component={Tournament} authed={false} />
               <PublicRoute path='/favorites' component={Favorites} authed={false} />
-              <PublicRoute path='/player' component={PlayerProfile} authed={false} />
+              <PublicRoute path='/players/:playerId' component={PlayerProfile} authed={false} />
               <PublicRoute path='/tournaments/:tournamentId' component={TournamentProfile} authed={false} />
             </Switch>
           </React.Fragment>

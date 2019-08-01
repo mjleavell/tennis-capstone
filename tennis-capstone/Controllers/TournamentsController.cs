@@ -73,10 +73,10 @@ namespace tennisCapstone.Controllers
             return Ok(singleTournament);
         }
 
-        //[HttpGet("{tournamentId}/api")]
-        //public TournamentyProfileRoot GetTournamentProfile(string sportsRadarId)
-        //{
-        //    return _apiTourneyRepo.GetProfile(sportsRadarId);
-        //}
+        [HttpGet("api/profile")]
+        public TournamentyProfileRoot GetTournamentProfile(string sportsRadarId)
+        {
+            return _apiTourneyRepo.GetTournamentProfile(sportsRadarId);
+        }
     }
 }

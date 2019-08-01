@@ -53,5 +53,15 @@ namespace tennisCapstone.Data
             var results = JsonConvert.DeserializeObject<PlayerRootObject>(response.Content);
             return results;
         }
+
+        public TournamentyProfileRoot GetTournamentProfile(string sportsRadarId)
+        {
+            var client = new RestClient($"https://api.sportradar.com/tennis-t2/en/tournaments/{sportsRadarId}/info.json?api_key=vjrvn7kjvwj38vdmz693m3rj");
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+
+            var results = JsonConvert.DeserializeObject<TournamentyProfileRoot>(response.Content);
+            return results;
+        }
     }
 }

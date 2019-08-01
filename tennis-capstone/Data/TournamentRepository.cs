@@ -132,5 +132,19 @@ namespace tennisCapstone.Data
                 }
             }
         }
+
+        public Tournament GetSingleTournament(int tournamentId)
+        {
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var getQuery = "SELECT * FROM Tournaments WHERE tournamentId = @tournamentId";
+
+                var parameter = new { TournamentId = tournamentId };
+
+                var tournament = db.QueryFirst<Tournament>(getQuery, parameter);
+
+                return tournament;
+            }
+        }
     }
 }

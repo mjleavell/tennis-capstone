@@ -5,7 +5,7 @@ class TournamentProfile extends React.Component {
   render() {
     return (
       <div className="TournamentProfile">
-        <h2>TournamentProfile</h2>
+        <h2>Tournament Profile</h2>
       </div>
     );
   }

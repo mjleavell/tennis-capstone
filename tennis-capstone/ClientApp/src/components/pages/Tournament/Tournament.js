@@ -5,6 +5,7 @@ import {
   MDBDataTable,
   MDBIcon,
 } from 'mdbreact';
+import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import tournamentRequests from '../../../helpers/data/tournamentRequests';
 import tableProperties from '../../../helpers/tableProperties';
@@ -33,7 +34,7 @@ class Tournament extends React.Component {
     tournaments.map((tournament) => {
       const newTournament = {
         year: Number(tournament.year),
-        name: tournament.name,
+        name: <Link to={`/tournaments/${tournament.tournamentId}`}>{tournament.name}</Link>,
         startDate: <Moment format="MM/DD/YYYY">{tournament.startDate}</Moment>,
         endDate: <Moment format="MM/DD/YYYY">{tournament.endDate}</Moment>,
         level: tournament.level,

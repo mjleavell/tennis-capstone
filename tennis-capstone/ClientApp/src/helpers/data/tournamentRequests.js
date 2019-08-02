@@ -16,7 +16,31 @@ const getWomenTournaments = () => new Promise((resolve, reject) => {
 
 const updateFaveTournament = (tournamentId, isFavorite) => axios.put(`${apiUrl}/tournaments/${tournamentId}?isFavorite=${isFavorite}`);
 
+const getSingleTournament = tournamentId => new Promise((resolve, reject) => {
+  axios.get(`${apiUrl}/tournaments/${tournamentId}`)
+    .then((results) => {
+      const tournament = results.data;
+      resolve(tournament);
+    })
+    .catch((error) => {
+      reject(error);
+    });
+});
+
+const getTournamentProfile = sportsRadarId => new Promise((resolve, reject) => {
+  axios.get(`${apiUrl}/tournaments/api/profile?sportsRadarId=${sportsRadarId}`).then((result) => {
+    const profile = result.data;
+    resolve(profile);
+  })
+    .catch((error) => {
+      reject(error);
+    });
+});
+
+
 export default {
   getWomenTournaments,
   updateFaveTournament,
+  getSingleTournament,
+  getTournamentProfile,
 };

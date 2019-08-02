@@ -28,6 +28,7 @@ namespace tennisCapstone.Data
                                    ,[EndDate]
                                    ,[Year]
                                    ,[Level]
+                                   ,[CategoryName]
                                    ,[Type]
                                    ,[Gender]
                                    ,[IsFavorite])
@@ -39,6 +40,7 @@ namespace tennisCapstone.Data
                                    ,@endDate
                                    ,@year
                                    ,@level
+                                   ,@categoryName
                                    ,@type
                                    ,@gender
                                    ,@isFavorite)";
@@ -51,6 +53,7 @@ namespace tennisCapstone.Data
                         EndDate = tournament.Current_Season.End_Date,
                         Year = tournament.Current_Season.Year,
                         Level = tournament.Category.Level,
+                        CategoryName = tournament.Category.Name,
                         Type = tournament.Type,
                         Gender = tournament.Gender,
                         IsFavorite = false
@@ -130,6 +133,20 @@ namespace tennisCapstone.Data
                 {
                     throw new Exception("Unable to to favorite that tournament");
                 }
+            }
+        }
+
+        public Tournament GetSingleTournament(int tournamentId)
+        {
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var getQuery = "SELECT * FROM Tournaments WHERE tournamentId = @tournamentId";
+
+                var parameter = new { TournamentId = tournamentId };
+
+                var tournament = db.QueryFirst<Tournament>(getQuery, parameter);
+
+                return tournament;
             }
         }
     }

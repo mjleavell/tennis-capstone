@@ -6,6 +6,7 @@ import {
   MDBIcon,
 } from 'mdbreact';
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 import faveRequests from '../../../helpers/data/faveRequests';
 import playerRequests from '../../../helpers/data/playerRequests';
 import tournamentRequests from '../../../helpers/data/tournamentRequests';
@@ -46,7 +47,7 @@ class Favorites extends React.Component {
     tournaments.map((tournament) => {
       const newTournament = {
         year: Number(tournament.year),
-        name: tournament.name,
+        name: <Link to={`/tournaments/${tournament.tournamentId}`}>{tournament.name}</Link>,
         startDate: <Moment format="MM/DD/YYYY">{tournament.startDate}</Moment>,
         endDate: <Moment format="MM/DD/YYYY">{tournament.endDate}</Moment>,
         level: tournament.level,
@@ -101,7 +102,7 @@ class Favorites extends React.Component {
     players.map((player) => {
       const newPlayer = {
         currentSinglesRanking: player.currentSinglesRanking,
-        name: player.name,
+        name: <Link to={`/players/${player.playerId}`}>{player.name}</Link>,
         rankingPoints: player.rankingPoints,
         tournamentsPlayed: player.tournamentsPlayed,
         nationality: player.nationality,

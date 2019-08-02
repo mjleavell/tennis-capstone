@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+
 const tournamentColumns = [
   {
     label: 'Year',
@@ -17,6 +19,11 @@ const tournamentColumns = [
   {
     label: 'End Date',
     field: 'endDate',
+    sort: 'asc',
+  },
+  {
+    label: 'Tournament Type',
+    field: 'categoryName',
     sort: 'asc',
   },
   {
@@ -79,9 +86,19 @@ const defaultTournamentData = {
   rows: [],
 };
 
+const convertStringToNumber = (stringToConvert) => {
+  const stringToNumber = Number(stringToConvert);
+  return stringToNumber.toLocaleString();
+};
+
+// eslint-disable-next-line eqeqeq
+const splitString = stringToSplit => ((stringToSplit != undefined || stringToSplit != null) ? stringToSplit.split('_').join(' ') : 'N/A');
+
 export default {
   playerColumns,
+  splitString,
   tournamentColumns,
   defaultPlayerData,
   defaultTournamentData,
+  convertStringToNumber,
 };

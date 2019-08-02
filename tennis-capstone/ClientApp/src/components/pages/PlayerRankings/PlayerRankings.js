@@ -49,7 +49,7 @@ class PlayerRankings extends React.Component {
       const newPlayer = {
         currentSinglesRanking: player.currentSinglesRanking,
         name: <Link to={`/players/${player.playerId}`}>{player.name}</Link>,
-        rankingPoints: player.rankingPoints,
+        rankingPoints: tableProperties.convertStringToNumber(player.rankingPoints),
         tournamentsPlayed: player.tournamentsPlayed,
         nationality: player.nationality,
         isFavorite: (player.isFavorite === true) ? <MDBIcon icon="star" size="sm" className='btn table-btn' id={player.playerId} onClick={e => this.isFavorite(e, player.playerId, player.isFavorite)} /> : <MDBIcon far icon="star" size="sm" className='btn table-btn' id={player.playerId} onClick={e => this.isFavorite(e, player.playerId, player.isFavorite)} />,

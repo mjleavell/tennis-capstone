@@ -39,10 +39,10 @@ class App extends React.Component {
               <PublicRoute exact path='/' component={Home} authed={false} />
               <PublicRoute path='/home' component={Home} authed={false} />
               <PublicRoute path='/rankings' component={PlayerRankings} authed={false} />
-              <PublicRoute path='/tournaments' component={Tournament} authed={false} />
               <PublicRoute path='/favorites' component={Favorites} authed={false} />
               <PublicRoute path='/players/:playerId' component={PlayerProfile} authed={false} />
               <PublicRoute path='/tournaments/:tournamentId' component={TournamentProfile} authed={false} />
+              <PublicRoute path='/tournaments' component={Tournament} authed={false} />
             </Switch>
           </React.Fragment>
         </BrowserRouter>

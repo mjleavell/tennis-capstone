@@ -64,7 +64,8 @@ class PlayerProfile extends React.Component {
 
     const getAge = (birthdate) => {
       const bdayFormat = DOB(birthdate);
-      return Math.floor((new Date() - new Date(bdayFormat).getTime()) / 3.15576e+10);
+      const bday = Math.floor((new Date() - new Date(bdayFormat).getTime()) / 3.15576e+10);
+      return bday.toString();
     };
 
     return (
@@ -83,7 +84,7 @@ class PlayerProfile extends React.Component {
           </Row>
           <Row>
             <Col sm="3">Birthdate:</Col>
-            <Col sm="4"><Moment format="MM/DD/YYYY">{DOB(player.date_Of_Birth)}</Moment></Col>
+            <Col sm="4"><Moment format="MMM DD, YYYY">{DOB(player.date_Of_Birth)}</Moment></Col>
           </Row>
           <Row>
             <Col sm="3">Plays:</Col>

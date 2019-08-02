@@ -37,8 +37,8 @@ class Tournament extends React.Component {
         name: <Link to={`/tournaments/${tournament.tournamentId}`}>{tournament.name}</Link>,
         startDate: <Moment format="MM/DD/YYYY">{tournament.startDate}</Moment>,
         endDate: <Moment format="MM/DD/YYYY">{tournament.endDate}</Moment>,
-        level: tournament.level,
-        type: tournament.type,
+        level: tournament.categoryName,
+        type: <p className='mb-0' style={{ textTransform: 'capitalize' }}>{tournament.type}</p>,
         isFavorite: (tournament.isFavorite === true) ? <MDBIcon icon="star" size="sm" className='btn table-btn' id={tournament.tournamentId} onClick={e => this.isFavorite(e, tournament.tournamentId, tournament.isFavorite)} /> : <MDBIcon far icon="star" size="sm" className='btn table-btn' id={tournament.tournamentId} onClick={e => this.isFavorite(e, tournament.tournamentId, tournament.isFavorite)} />,
       };
       tableRows.push(newTournament);

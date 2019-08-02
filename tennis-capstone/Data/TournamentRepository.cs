@@ -28,6 +28,7 @@ namespace tennisCapstone.Data
                                    ,[EndDate]
                                    ,[Year]
                                    ,[Level]
+                                   ,[CategoryName]
                                    ,[Type]
                                    ,[Gender]
                                    ,[IsFavorite])
@@ -39,6 +40,7 @@ namespace tennisCapstone.Data
                                    ,@endDate
                                    ,@year
                                    ,@level
+                                   ,@categoryName
                                    ,@type
                                    ,@gender
                                    ,@isFavorite)";
@@ -51,6 +53,7 @@ namespace tennisCapstone.Data
                         EndDate = tournament.Current_Season.End_Date,
                         Year = tournament.Current_Season.Year,
                         Level = tournament.Category.Level,
+                        CategoryName = tournament.Category.Name,
                         Type = tournament.Type,
                         Gender = tournament.Gender,
                         IsFavorite = false

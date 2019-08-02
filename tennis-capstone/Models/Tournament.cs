@@ -14,6 +14,7 @@ namespace tennisCapstone.Models
         public DateTime EndDate { get; set; }
         public string Year { get; set; }
         public string Level { get; set; }
+        public string CategoryName { get; set; }
         public string Type { get; set; }
         public string Gender { get; set; }
         public bool IsFavorite { get; set; }

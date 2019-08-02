@@ -1,12 +1,23 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable prefer-destructuring */
 import React from 'react';
-import './TournamentProfile.scss';
+import { Container, Row, Col } from 'reactstrap';
+import Moment from 'react-moment';
 import tournamentRequests from '../../../helpers/data/tournamentRequests';
+import properties from '../../../helpers/tableProperties';
+import './TournamentProfile.scss';
 
 class TournamentProfile extends React.Component {
   state = {
-    tournamentProfile: [],
     tournamentFromDb: [],
+    tournamentProfile: [],
+    tournament: [],
+    season: [],
+    info: [],
+    coverageInfo: [],
+    previousWinner: [],
+    tournamentCompetitors: [],
+    stages: [],
   }
 
   componentWillMount() {
@@ -23,14 +34,53 @@ class TournamentProfile extends React.Component {
 
   getProfile = (sportsradarId) => {
     tournamentRequests.getTournamentProfile(sportsradarId).then((data) => {
-      this.setState({ tournamentProfile: data });
+      this.setState({
+        tournamentProfile: data,
+        tournament: data.tournament,
+        season: data.season,
+        info: data.info,
+        coverageInfo: data.covreage_info,
+        previousWinner: data.winner_last_season,
+        tournamentCompetitors: data.competitors,
+        stages: data.stages,
+      });
     }).catch(err => console.error('error getting tournament profile', err));
   }
 
   render() {
+    const { tournament, season, info, previousWinner } = this.state;
+
     return (
       <div className="TournamentProfile">
-        <h2>Tournament Profile</h2>
+        <Container className='pt-5'>
+          <Row>
+            <Col sm="7"><h3>{season.name}</h3></Col>
+          </Row>
+          <Row>
+            <Col sm="3">Date:</Col>
+            <Col sm="4"><Moment format="MMM D, YYYY">{season.start_Date}</Moment> - <Moment format="MMM D, YYYY">{season.end_Date}</Moment></Col>
+          </Row>
+          <Row>
+            <Col sm="3">Surface:</Col>
+            <Col sm="4" style={{ textTransform: 'capitalize' }}>{info.surface}</Col>
+          </Row>
+          <Row>
+            <Col sm="3">Prize Money:</Col>
+            <Col sm="4">{info.prize_Currency} {properties.convertStringToNumber(info.prize_Money)}</Col>
+          </Row>
+          <Row>
+            <Col sm="3">Type:</Col>
+            <Col sm="4" style={{ textTransform: 'capitalize' }}>{tournament.type}</Col>
+          </Row>
+          <Row>
+            <Col sm="3">Previous Winner:</Col>
+            <Col sm="4" id={previousWinner.id}>{previousWinner.name}</Col>
+          </Row>
+          <Row>
+            <Col sm="3">Main Draw Competitors:</Col>
+            <Col sm="4">{info.number_Of_Competitors}</Col>
+          </Row>
+        </Container>
       </div>
     );
   }

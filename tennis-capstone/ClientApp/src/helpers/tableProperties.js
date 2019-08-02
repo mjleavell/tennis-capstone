@@ -1,3 +1,4 @@
+
 const tournamentColumns = [
   {
     label: 'Year',
@@ -20,8 +21,8 @@ const tournamentColumns = [
     sort: 'asc',
   },
   {
-    label: 'Tournament Level',
-    field: 'level',
+    label: 'Tournament Type',
+    field: 'categoryName',
     sort: 'asc',
   },
   {
@@ -79,9 +80,15 @@ const defaultTournamentData = {
   rows: [],
 };
 
+const convertStringToNumber = (stringToConvert) => {
+  const stringToNumber = Number(stringToConvert);
+  return stringToNumber.toLocaleString();
+};
+
 export default {
   playerColumns,
   tournamentColumns,
   defaultPlayerData,
   defaultTournamentData,
+  convertStringToNumber,
 };

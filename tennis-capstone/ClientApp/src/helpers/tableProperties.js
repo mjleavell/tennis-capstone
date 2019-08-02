@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 
 const tournamentColumns = [
   {
@@ -23,6 +24,11 @@ const tournamentColumns = [
   {
     label: 'Tournament Type',
     field: 'categoryName',
+    sort: 'asc',
+  },
+  {
+    label: 'Tournament Level',
+    field: 'level',
     sort: 'asc',
   },
   {
@@ -85,8 +91,12 @@ const convertStringToNumber = (stringToConvert) => {
   return stringToNumber.toLocaleString();
 };
 
+// eslint-disable-next-line eqeqeq
+const splitString = stringToSplit => ((stringToSplit != undefined || stringToSplit != null) ? stringToSplit.split('_').join(' ') : 'N/A');
+
 export default {
   playerColumns,
+  splitString,
   tournamentColumns,
   defaultPlayerData,
   defaultTournamentData,

@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable consistent-return */
 /* eslint-disable object-curly-newline */
 /* eslint-disable prefer-destructuring */
 import React from 'react';
@@ -48,7 +50,11 @@ class TournamentProfile extends React.Component {
   }
 
   render() {
-    const { tournament, season, info, previousWinner } = this.state;
+    const { tournament, season, info, previousWinner, tournamentFromDb } = this.state;
+
+    const nullValue = tournamentValue => ((tournamentValue != null || tournamentValue != undefined) ? (tournamentValue) : 'N/A');
+
+    const prevWinner = winner => ((winner != null || winner != undefined) ? (winner.name) : 'N/A');
 
     return (
       <div className="TournamentProfile">
@@ -57,12 +63,20 @@ class TournamentProfile extends React.Component {
             <Col sm="7"><h3>{season.name}</h3></Col>
           </Row>
           <Row>
+            <Col sm="3">Tournament Type:</Col>
+            <Col sm="4">{tournamentFromDb.categoryName}</Col>
+          </Row>
+          <Row>
+            <Col sm="3">Tournament Level:</Col>
+            <Col sm="4" style={{ textTransform: 'capitalize' }}>{properties.splitString(tournamentFromDb.level)}</Col>
+          </Row>
+          <Row>
             <Col sm="3">Date:</Col>
             <Col sm="4"><Moment format="MMM D, YYYY">{season.start_Date}</Moment> - <Moment format="MMM D, YYYY">{season.end_Date}</Moment></Col>
           </Row>
           <Row>
             <Col sm="3">Surface:</Col>
-            <Col sm="4" style={{ textTransform: 'capitalize' }}>{info.surface}</Col>
+            <Col sm="4" style={{ textTransform: 'capitalize' }}>{nullValue(info.surface)}</Col>
           </Row>
           <Row>
             <Col sm="3">Prize Money:</Col>
@@ -74,7 +88,7 @@ class TournamentProfile extends React.Component {
           </Row>
           <Row>
             <Col sm="3">Previous Winner:</Col>
-            <Col sm="4" id={previousWinner.id}>{previousWinner.name}</Col>
+            <Col sm="4">{prevWinner(previousWinner)}</Col>
           </Row>
           <Row>
             <Col sm="3">Main Draw Competitors:</Col>

@@ -132,6 +132,7 @@ class Favorites extends React.Component {
           bordered
           small
           data={pdata}
+          searching={false}
         />
         <h2 className='mx-auto'>Tournaments</h2>
         <MDBDataTable
@@ -140,6 +141,7 @@ class Favorites extends React.Component {
           small
           order={['year', 'asc']}
           data={tdata}
+          searching={false}
         />
       </div>
     );

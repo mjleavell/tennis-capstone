@@ -50,8 +50,9 @@ class Favorites extends React.Component {
         name: <Link to={`/tournaments/${tournament.tournamentId}`}>{tournament.name}</Link>,
         startDate: <Moment format="MM/DD/YYYY">{tournament.startDate}</Moment>,
         endDate: <Moment format="MM/DD/YYYY">{tournament.endDate}</Moment>,
-        level: tournament.level,
-        type: tournament.type,
+        categoryName: tournament.categoryName,
+        level: <p className='mb-0' style={{ textTransform: 'capitalize' }}>{tableProperties.splitString(tournament.level)}</p>,
+        type: <p className='mb-0' style={{ textTransform: 'capitalize' }}>{tournament.type}</p>,
         isFavorite: (tournament.isFavorite === true) ? <MDBIcon icon="star" size="sm" className='btn table-btn' id={tournament.tournamentId} onClick={e => this.tisFavorite(e, tournament.tournamentId, tournament.isFavorite)} /> : <MDBIcon far icon="star" size="sm" className='btn table-btn' id={tournament.tournamentId} onClick={e => this.isFavorite(e, tournament.tournamentId, tournament.isFavorite)} />,
       };
       tableRows.push(newTournament);
@@ -125,14 +126,14 @@ class Favorites extends React.Component {
 
     return (
       <div className="Favorites">
-        <h2 className='mx-auto'>Favorite Players</h2>
+        <h2 className='mx-auto'>Players</h2>
         <MDBDataTable
           striped
           bordered
           small
           data={pdata}
         />
-        <h2 className='mx-auto'>Favorite Tournaments</h2>
+        <h2 className='mx-auto'>Tournaments</h2>
         <MDBDataTable
           striped
           bordered

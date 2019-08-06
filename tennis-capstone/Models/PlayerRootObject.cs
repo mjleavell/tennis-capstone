@@ -10,7 +10,7 @@ namespace tennisCapstone.Models
     {
         public PlayerProfile Player { get; set; }
         public IEnumerable<ProfileRankings> Rankings { get; set; }
-        //public StatsRootObject Statistics { get; set; }
+        public StatsRootObject Statistics { get; set; }
         public IEnumerable<TournamentFromApi> Tournaments_played { get; set; }
     }
 }

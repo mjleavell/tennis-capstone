@@ -26,7 +26,7 @@ class MyNavbar extends React.Component {
   render() {
     return (
       <div className="MyNavbar">
-        <Navbar dark color="dark" expand="sm" fixed="top">
+        <Navbar dark color='dark' expand="sm" fixed="top">
           <NavbarBrand tag={RRNavLink} to="/home">Tennis Explorer</NavbarBrand>
           <NavbarToggler onClick={e => this.toggle(e)} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -40,7 +40,7 @@ class MyNavbar extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
-              <NavLink
+                <NavLink
                   tag={RRNavLink}
                   to='/tournaments'
                 >
@@ -48,7 +48,7 @@ class MyNavbar extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
-              <NavLink
+                <NavLink
                   tag={RRNavLink}
                   to='/favorites'
                 >

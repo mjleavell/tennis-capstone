@@ -5,6 +5,7 @@
 import React from 'react';
 import Moment from 'react-moment';
 import { Container, Row, Col } from 'reactstrap';
+import PlayerGraph from '../../PlayerGraph/PlayerGraph';
 import playerRequests from '../../../helpers/data/playerRequests';
 import './PlayerProfile.scss';
 
@@ -15,11 +16,29 @@ class PlayerProfile extends React.Component {
     rankings: [],
     tournaments: [],
     player: [],
+    statistics: [],
+    stats: [],
   }
 
   componentWillMount() {
     this.getSinglePlayerRanking();
   }
+
+  getData = () => {
+    const playerStats = [];
+    // eslint-disable-next-line array-callback-return
+    this.state.statistics.map((statsPerYear) => {
+      const yearlyStats = {
+        year: statsPerYear.year,
+        matchesPlayed: statsPerYear.statistics.matches_played,
+        matchesWon: statsPerYear.statistics.matches_won,
+        tournamentsPlayed: statsPerYear.statistics.tournaments_played,
+        tournamentsWon: statsPerYear.statistics.tournaments_won,
+      };
+      playerStats.unshift(yearlyStats);
+    });
+    this.setState({ stats: playerStats });
+  };
 
   getSinglePlayerRanking = () => {
     const playerId = this.props.computedMatch.params.playerId;
@@ -37,13 +56,15 @@ class PlayerProfile extends React.Component {
         profile: data,
         player: data.player,
         rankings: data.rankings,
+        statistics: data.statistics.periods,
         tournaments: data.tournaments_played,
       });
+      this.getData();
     }).catch(err => console.error('error getting player profile from api', err));
   }
 
   render() {
-    const { profile, player, rankings, tournaments } = this.state;
+    const { player, tournaments, stats } = this.state;
 
     const heightToInches = (playerHeight) => {
       const inches = Number(playerHeight) / 2.54;
@@ -115,6 +136,7 @@ class PlayerProfile extends React.Component {
             <Col sm="4">{tournaments.length}</Col>
           </Row>
         </Container>
+        <PlayerGraph stats={stats} />
       </div>
     );
   }

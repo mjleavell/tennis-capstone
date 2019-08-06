@@ -8,6 +8,6 @@ namespace tennisCapstone.Models
 {
     public class StatsRootObject
     {
-        public IEnumerable periods { get; set; }
+        public IEnumerable<PlayerStats> periods { get; set; }
     }
 }

@@ -69,7 +69,7 @@ class PlayerProfile extends React.Component {
     };
 
     return (
-      <div className="PlayerProfile">
+      <div className="PlayerProfile container">
         <Container className='pt-5'>
           <Row>
             <Col sm="7"><h3>{player.name}</h3></Col>

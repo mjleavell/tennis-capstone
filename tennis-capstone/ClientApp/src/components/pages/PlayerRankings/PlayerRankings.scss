@@ -5,14 +5,20 @@
     width: 90%;
     margin: auto;
     tbody {
-      td:last-child {
+      td:nth-child(6) {
         padding: 0rem 0.6rem;
         display: flex;
         align-content: center;
+      }
+      td:last-child {
+        display: none;
       }
     }
     .table-btn {
       justify-content: center;
     }
+    // .info-btn {
+    //   padding: 0rem 0.6rem;
+    // }
   }
 }

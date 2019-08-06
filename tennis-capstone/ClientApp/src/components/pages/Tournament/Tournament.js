@@ -41,6 +41,9 @@ class Tournament extends React.Component {
         level: <p className='mb-0' style={{ textTransform: 'capitalize' }}>{tableProperties.splitString(tournament.level)}</p>,
         type: <p className='mb-0' style={{ textTransform: 'capitalize' }}>{tournament.type}</p>,
         isFavorite: (tournament.isFavorite === true) ? <MDBIcon icon="star" size="sm" className='btn table-btn' id={tournament.tournamentId} onClick={e => this.isFavorite(e, tournament.tournamentId, tournament.isFavorite)} /> : <MDBIcon far icon="star" size="sm" className='btn table-btn' id={tournament.tournamentId} onClick={e => this.isFavorite(e, tournament.tournamentId, tournament.isFavorite)} />,
+        searchTournament: tournament.name,
+        searchStartDate: tournament.startDate,
+        searchEndDate: tournament.endDate,
       };
       tableRows.push(newTournament);
     });
